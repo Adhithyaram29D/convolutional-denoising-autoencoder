@@ -104,11 +104,15 @@ autoencoder = keras.Model(input_img, decoded)
 autoencoder.summary()
 autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
 autoencoder.fit(x_train_noisy, x_train_scaled,
-                epochs=2,
+                epochs=4,
                 batch_size=128,
                 shuffle=True,
-                validation_data=(x_test_noisy, x_test_scaled))
+                validation_data=(x_test_noisy, x_test_scaled))\
+metrics = pd.DataFrame(autoencoder.history.history)
+metrics[['loss','val_loss']].plot()
+print("ADHITHYARAM D \n 212222230008")
 decoded_imgs = autoencoder.predict(x_test_noisy)
+print("ADHITHYARAM D \n 212222230008")
 n = 10
 plt.figure(figsize=(20, 4))
 for i in range(1, n + 1):
